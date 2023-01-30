@@ -12,6 +12,26 @@ export type ViaCEPAddress = {
 
 };
 
+export type paymentEntity = {
+  ticketId: number;
+  value: number;
+  cardIssuer: string;
+  cardLastDigits: string;
+};
+
+export type CardInfo = {
+  issuer: string;
+  number: number;
+  name: string;
+  expirationDate: Date;
+  cvv: number;
+};
+
+export type PaymentInfo = {
+  ticketId: number;
+  cardData: CardInfo;
+};
+
 export type AddressEnrollment = {
   logradouro: string,
   complemento: string,
