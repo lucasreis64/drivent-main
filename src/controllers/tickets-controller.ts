@@ -27,8 +27,16 @@ export async function findUserTicket(req: AuthenticatedRequest, res: Response) {
 
 export async function insertUserTicket(req: AuthenticatedRequest, res: Response) {
   try{
-    return res.sendStatus(200);
+    const userId = req.userId;
+    const { ticketTypeId } = req.body;
+
+    const userTicket = await ticketService.postUserTickets(ticketTypeId, userId);
+
+    return res.status(httpStatus.CREATED).send(userTicket);
   }catch (err) {
-    res.status(500).send(err);
+    if (err.name === "NotFoundError") {
+      return res.sendStatus(httpStatus.NOT_FOUND);
+    }
+    res.status(httpStatus.BAD_REQUEST).send(err);
   }
 }
