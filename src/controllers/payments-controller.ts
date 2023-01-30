@@ -34,7 +34,6 @@ export async function insertPayment(req: AuthenticatedRequest, res: Response) {
 
     return res.status(httpStatus.OK).send(payment);
   }catch (err) {
-    console.log(err);
     if (err.name === "NotFoundError") {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
